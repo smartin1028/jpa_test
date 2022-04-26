@@ -7,8 +7,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "JPA_MEMBER")
-@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR",
-		sequenceName = "MEMBER_SEQ",	// 매핑할 데이터베이스 시퀀스 이름
+@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR_01",
+		sequenceName = "MEMBER_SEQ_01",	// 매핑할 데이터베이스 시퀀스 이름
 		initialValue = 1, allocationSize = 1
 //		, allocationSize = 50
 )
@@ -21,6 +21,13 @@ public class Member {
 	@Column(name = "username", columnDefinition = "varchar(100) default 'empty'")
 	private String name;
 	private int age1;
+
+//	@Column(name="team_id")
+//	private Long teamId;
+
+	@ManyToOne
+	@JoinColumn(name = "team_id")
+	private Team team;
 
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
@@ -56,5 +63,13 @@ public class Member {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public Team getTeam() {
+		return team;
 	}
 }
