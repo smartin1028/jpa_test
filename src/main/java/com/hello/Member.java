@@ -20,7 +20,7 @@ public class Member {
 //	@Column(unique = true, length = 10)
 	@Column(name = "username", columnDefinition = "varchar(100) default 'empty'")
 	private String name;
-	private int age;
+	private int age1;
 
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
