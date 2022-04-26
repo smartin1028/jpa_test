@@ -6,16 +6,17 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Table(name = "JPA_MEMBER")
-@SequenceGenerator(name = "MEMBER_SEQ_GENERATOR",
-		sequenceName = "MEMBER_SEQ",	// 매핑할 데이터베이스 시퀀스 이름
-		initialValue = 1, allocationSize = 1
-//		, allocationSize = 50
+@Table(name = "JPA_MEMBER_BY_TABLE_SEQ")
+@TableGenerator(
+		name = "MEMBER_SEQ_GENERATOR",
+		table = "MY_SEQUENCES",
+		pkColumnValue = "MEMBER_SEQ"
+//		, allocationSize = 1
 )
-public class Member {
+public class MemberByTableSeq {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE
-	,generator = "MEMBER_SEQ")
+	@GeneratedValue(strategy = GenerationType.TABLE,
+			generator = "MEMBER_SEQ_GENERATOR")
 	private Long id;
 //	@Column(unique = true, length = 10)
 	@Column(name = "username", columnDefinition = "varchar(100) default 'empty'")
@@ -43,10 +44,10 @@ public class Member {
 	@Transient
 	private String tmp;
 
-	public Member() {
+	public MemberByTableSeq() {
 	}
 
-	public Member(String name) {
+	public MemberByTableSeq(String name) {
 		this.name = name;
 	}
 

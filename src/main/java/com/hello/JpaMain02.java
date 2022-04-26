@@ -4,9 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public class JpaMain {
+public class JpaMain02 {
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		EntityManager em = emf.createEntityManager();
@@ -16,13 +15,11 @@ public class JpaMain {
 		try {
 			System.out.println("=============================");
 
-			Member member = new Member("Hello");
+			Member_test member = new Member_test("Hello");
 
 			em.persist(member);
-			em.persist(new Member( "Hello2"));
-			em.persist(new Member( "Hello3"));
 
-			member.setName("h1");
+
 
 //			List<Member> resultList = em.createQuery("select m from  Member  m", Member.class).getResultList();
 			System.out.println("=============================");
