@@ -1,6 +1,8 @@
 package com.hello.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "shop_member")
@@ -13,6 +15,14 @@ public class Member {
 	private String city;
 	private String street;
 	private String zipcode;
+
+	@OneToMany(mappedBy = "member")
+	private List<Order> orders = new ArrayList<>();
+
+	@OneToOne
+	@JoinColumn(name = "locker_id")
+	private Locker locker;
+
 
 	public Long getId() {
 		return id;

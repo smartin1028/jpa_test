@@ -65,11 +65,16 @@ public class Member {
 		this.name = name;
 	}
 
-	public void setTeam(Team team) {
+	public void changeTeam(Team team) {
 		this.team = team;
+		this.team.getMemberList().add(this);
 	}
 
 	public Team getTeam() {
 		return team;
+	}
+
+	public Long getId() {
+		return id;
 	}
 }
